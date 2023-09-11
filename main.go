@@ -1,12 +1,15 @@
 package main
 
 import (
+	"BookClubBuddy/discord"
 	"BookClubBuddy/web"
 	"log"
 	"net/http"
 )
 
 func main() {
+	go func() { discord.StartBot() }()
+
 	fs := http.FileServer(http.Dir("./web"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.HandleFunc("/", web.ServeTemplate)
