@@ -8,7 +8,7 @@ import (
 
 func main() {
 	fs := http.FileServer(http.Dir("./web"))
-	http.Handle("/web/", http.StripPrefix("/web/", fs))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.HandleFunc("/", web.ServeTemplate)
 
 	log.Print("Starting server on port 3000...")
